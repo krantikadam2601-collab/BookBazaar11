@@ -27,14 +27,13 @@
                 <button class="logout-btn" id="logoutBtn">Logout</button>
             </div>
 
-            <!-- TABS -->
             <div class="tab-bar">
-                <button class="tab-btn active" id="tabBrowse" onclick="showTab('browse')">🔍 Browse Books</button>
-                <button class="tab-btn" id="tabWishlist" onclick="showTab('wishlist')">❤️ Wishlist</button>
+                <button class="tab-btn active" id="tabBtn_browse" onclick="showTab('browse')">🔍 Browse</button>
+                <button class="tab-btn" id="tabBtn_wishlist" onclick="showTab('wishlist')">❤️ Wishlist</button>
+                <button class="tab-btn" id="tabBtn_orders" onclick="showTab('orders')">📦 My Orders</button>
             </div>
 
-            <!-- BROWSE TAB -->
-            <div id="tabBrowseContent">
+            <div id="tab_browse">
                 <h2 class="dashboard-title">Available Books</h2>
                 <div class="search-bar">
                     <input type="text" id="searchInput" placeholder="Search by book name or author...">
@@ -56,16 +55,22 @@
                 <div id="booksGrid" class="books-grid"></div>
             </div>
 
-            <!-- WISHLIST TAB -->
-            <div id="tabWishlistContent" style="display:none;">
+            <div id="tab_wishlist" style="display:none;">
                 <h2 class="dashboard-title">My Wishlist ❤️</h2>
                 <div id="wishlistGrid" class="books-grid"></div>
+            </div>
+
+            <div id="tab_orders" style="display:none;">
+                <h2 class="dashboard-title">My Orders 📦</h2>
+                <p style="color:#888; font-size:13px; margin-bottom:20px;">
+                    These are books sellers have confirmed as sold to you.
+                </p>
+                <div id="ordersGrid"></div>
             </div>
 
         </div>
     </div>
 
-    <!-- Book Detail Modal -->
     <div id="bookModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" id="closeModal">&times;</span>
