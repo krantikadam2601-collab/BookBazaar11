@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     language: data.language,
                     price: data.price,
                     pageNo: data.pageNo || "",
-                    condition: data.condition,
+                    bookAge: data.bookAge,
                     otherInfo: data.otherInfo || "",
                     image: "BBlogo.jpeg",
                     status: "available",
