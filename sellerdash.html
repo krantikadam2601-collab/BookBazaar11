@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Dashboard - BookBazaar</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="brand">
+        <img src="BBlogo.jpeg" class="logo">
+        <h1 id="logoname">BookBazaar</h1>
+        <p class="tagline">Buy, Sell and Exchange Books Easily</p>
+    </div>
+
+    <div class="container">
+        <div class="dashboard-card">
+
+            <div class="user-info">
+                <div class="user-info-content">
+                    <div class="user-info-item">
+                        <span class="user-info-label">Seller</span>
+                        <span class="user-info-value" id="sellerName">Loading...</span>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">Logout</button>
+            </div>
+
+            <!-- TABS -->
+            <div class="tab-bar">
+                <button class="tab-btn active" id="tabListings" onclick="showTab('listings')">📚 My Listings</button>
+                <button class="tab-btn" id="tabAdd" onclick="showTab('add')">➕ Add Book</button>
+                <button class="tab-btn" id="tabMessages" onclick="showTab('messages')">
+                    💬 Messages
+                    <span id="chatCountBadge" style="
+                        background:#ff8c00; color:white;
+                        border-radius:12px; padding:1px 8px;
+                        font-size:12px; margin-left:5px;
+                        display:none;
+                    "></span>
+                </button>
+            </div>
+
+            <!-- MY LISTINGS TAB -->
+            <div id="tabListingsContent">
+                <h2 class="dashboard-title">My Book Listings</h2>
+                <div id="myListingsGrid" class="books-grid">
+                    <p style="color:#aaa;">Loading your listings...</p>
+                </div>
+            </div>
+
+            <!-- ADD BOOK TAB -->
+            <div id="tabAddContent" style="display:none;">
+                <h2 class="dashboard-title">Add New Book Listing</h2>
+                <form id="bookListingForm">
+
+                    <div class="form-section">
+                        <div class="section-title">Seller Information</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Seller Name</label>
+                                <input type="text" id="seller" name="seller" placeholder="Your name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Location (City)</label>
+                                <input type="text" id="location" name="location" placeholder="e.g. Pune, Mumbai" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <div class="section-title">Book Information</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Book Name</label>
+                                <input type="text" id="bookName" name="bookName" placeholder="Enter book title" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Author</label>
+                                <input type="text" id="author" name="author" placeholder="Author name" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select id="category" name="category" required>
+                                    <option value="">Select category</option>
+                                    <option value="fiction">Fiction</option>
+                                    <option value="non-fiction">Non-Fiction</option>
+                                    <option value="mystery">Mystery & Thriller</option>
+                                    <option value="romance">Romance</option>
+                                    <option value="sci-fi">Science Fiction</option>
+                                    <option value="fantasy">Fantasy</option>
+                                    <option value="history">History</option>
+                                    <option value="biography">Biography</option>
+                                    <option value="self-help">Self-Help</option>
+                                    <option value="educational">Educational</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Language</label>
+                                <input type="text" id="language" name="language" placeholder="e.g. English, Hindi" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Price (₹)</label>
+                                <input type="number" id="price" name="price" placeholder="Enter price" min="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Total Pages</label>
+                                <input type="number" id="pageNo" name="pageNo" placeholder="Number of pages" min="1" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <div class="section-title">Book Details</div>
+                        <div class="form-group">
+                            <label>Condition</label>
+                            <select id="condition" name="condition" required>
+                                <option value="">Select condition</option>
+                                <option value="New">New</option>
+                                <option value="Good">Good</option>
+                                <option value="Used">Used</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Additional Information</label>
+                            <textarea id="otherInfo" name="otherInfo" placeholder="Any extra details about the book..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn-save">Save Listing</button>
+                        <button type="reset" class="btn-clear">Clear</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- MESSAGES TAB -->
+            <div id="tabMessagesContent" style="display:none;">
+                <h2 class="dashboard-title">Messages from Buyers</h2>
+                <div id="sellerChats"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="js/firebaseConfig.js"></script>
+    <script src="js/sellerdash.js"></script>
+</body>
+</html>

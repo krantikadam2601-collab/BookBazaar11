@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - BookBazaar</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="chat-wrapper">
+        <div class="chat-header">
+            <button class="back-btn" onclick="history.back()">← Back</button>
+            <h2 id="chatTitle">BookBazaar Chat 💬</h2>
+        </div>
+        <div class="chat-container">
+            <div id="chatBox" class="chat-box"></div>
+            <div class="chat-input">
+                <input type="text" id="messageInput" placeholder="Type a message... (Enter to send)">
+                <button id="sendBtn">Send ➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="js/firebaseConfig.js"></script>
+    <script src="js/chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Dashboard - BookBazaar</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="brand">
+        <img src="BBlogo.jpeg" class="logo">
+        <h1 id="logoname">BookBazaar</h1>
+        <p class="tagline">Buy, Sell and Exchange Books Easily</p>
+    </div>
+
+    <div class="container">
+        <div class="dashboard-card">
+
+            <div class="user-info">
+                <div class="user-info-content">
+                    <div class="user-info-item">
+                        <span class="user-info-label">Buyer</span>
+                        <span class="user-info-value" id="buyerName">Loading...</span>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">Logout</button>
+            </div>
+
+            <!-- TABS -->
+            <div class="tab-bar">
+                <button class="tab-btn active" id="tabBrowse" onclick="showTab('browse')">🔍 Browse Books</button>
+                <button class="tab-btn" id="tabWishlist" onclick="showTab('wishlist')">❤️ Wishlist</button>
+            </div>
+
+            <!-- BROWSE TAB -->
+            <div id="tabBrowseContent">
+                <h2 class="dashboard-title">Available Books</h2>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search by book name or author...">
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="fiction">Fiction</option>
+                        <option value="non-fiction">Non-Fiction</option>
+                        <option value="mystery">Mystery & Thriller</option>
+                        <option value="romance">Romance</option>
+                        <option value="sci-fi">Science Fiction</option>
+                        <option value="fantasy">Fantasy</option>
+                        <option value="history">History</option>
+                        <option value="biography">Biography</option>
+                        <option value="self-help">Self-Help</option>
+                        <option value="educational">Educational</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div id="booksGrid" class="books-grid"></div>
+            </div>
+
+            <!-- WISHLIST TAB -->
+            <div id="tabWishlistContent" style="display:none;">
+                <h2 class="dashboard-title">My Wishlist ❤️</h2>
+                <div id="wishlistGrid" class="books-grid"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Book Detail Modal -->
+    <div id="bookModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="js/firebaseConfig.js"></script>
+    <script src="js/buyerdash.js"></script>
+</body>
+</html>

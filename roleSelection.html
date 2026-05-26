@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who are you? - BookBazaar</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="brand">
+        <img src="BBlogo.jpeg" alt="BookBazaar Logo" class="logo">
+        <h1 id="logoname">BookBazaar</h1>
+        <p class="tagline">Buy, Sell and Exchange Books Easily</p>
+    </div>
+
+    <div class="role-container">
+        <h2>What would you like to do?</h2>
+        <p id="welcomeUser" style="color:#888; margin-bottom:30px;"></p>
+        <div class="role-cards">
+            <div class="role-card" onclick="window.location.href='sellerdash.html'">
+                <div class="role-icon">📚</div>
+                <h3>I want to Sell</h3>
+                <p>List your old books and connect with buyers nearby</p>
+            </div>
+            <div class="role-card" onclick="window.location.href='buyerdash.html'">
+                <div class="role-icon">🛍️</div>
+                <h3>I want to Buy</h3>
+                <p>Browse secondhand books at great prices</p>
+            </div>
+        </div>
+        <button class="logout-btn" id="logoutBtn" style="margin-top:30px;">Logout</button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="js/firebaseConfig.js"></script>
+    <script>
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                db.collection("users").doc(user.uid).get().then(doc => {
+                    if (doc.exists) {
+                        document.getElementById("welcomeUser").textContent
+                            = "Hello, " + doc.data().name + " 👋";
+                    }
+                });
+            } else {
+                window.location.href = "login.html";
+            }
+        });
+
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            if (confirm("Logout?")) {
+                firebase.auth().signOut().then(() => {
+                    window.location.href = "login.html";
+                });
+            }
+        });
+    </script>
+</body>
+</html>
